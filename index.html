@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MIDI Parser Example</title>
+  <title>MIDI</title>
 </head>
 <body>
 
   <script src="https://cdn.jsdelivr.net/npm/midi-parser-js@4.0.4/src/main.min.js"></script>
 
   <script>
-    // Загружаем содержимое MIDI-файла
     const midiFileURL = 'notes.mid';
-    
+
     fetch(midiFileURL)
       .then(response => response.arrayBuffer())
       .then(midiData => {
         // Парсим MIDI-файл
-        const midiParser = new MidiParser(midiData);
-        
+        const midiParser = new MidiParser.MidiFile(midiData);
+
         // Получаем события из MIDI-файла
-        const events = midiParser.parse();
-        
+        const events = midiParser.getTracks();
+
         // Выводим информацию о событиях
         console.log(events);
       })
